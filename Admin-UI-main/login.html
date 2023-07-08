@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Rikkeisoft</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- FOrm đăng nhập User -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Login</h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" required>
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" id="btnSubmit" class="btn btn-primary">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let userList = JSON.parse(localStorage.getItem('userList'));
+    if (userList) {
+        userId = parseInt(userList[userList.length - 1].userId.slice(1));
+    } else {
+        userList = [];
+        userId = 1;
+    }
+    if (!localStorage.getItem('userList')) {
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0"); // Tháng bắt đầu từ 0 nên phải cộng thêm 1
+        const day = String(date.getDate()).padStart(2, "0");
+        const dateString = `${year}-${month}-${day}`;
+        let item = {
+            userId: "U" + userId.toString().padStart(3, "0"),
+            username: "admin",
+            password: "admin",
+            fullname: "",
+            address: "",
+            dateOfBirth: "",
+            radioStatus: "",
+            createDate: dateString,
+        };
+        localStorage.setItem('userList', JSON.stringify([item]))
+    }
+
+    const btnSubmit = document.getElementById("btnSubmit")
+    btnSubmit.addEventListener("click", function(e) {
+        e.preventDefault()
+        let username = document.getElementById("username").value
+        let password = document.getElementById("password").value
+        if (checkLogin(username, password)) {
+            sessionStorage.setItem('userInfor', JSON.stringify({
+                username: 'admin',
+                password: 'admin'
+            }))
+            location.href = "/Admin-UI-main/index.html"
+        } else {
+            alert("Bạn đã nhập sai thông tin đăng nhập, bạn cần nhập lại")
+        }
+
+    });
+    function checkLogin(username, password) {
+        // Lấy danh sách tài khoản từ sessionStorage
+        let userList = JSON.parse(localStorage.getItem('userList'));
+        // Kiểm tra xem tên đăng nhập và mật khẩu có khớp với bất kỳ tài khoản nào trong danh sách hay không
+        for (let i = 0;i < userList.length;i++) {
+            if (userList[i].username === username && userList[i].password === password) {
+                // Nếu khớp, trả về đối tượng tài khoản
+                return userList[i];
+            }
+        }
+        // Nếu không khớp, trả về null
+        return false;
+    }
+</script>
+
+</html>

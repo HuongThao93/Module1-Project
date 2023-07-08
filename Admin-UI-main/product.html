@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+    <meta name="author" content="AdminKit">
+    <meta name="keywords"
+        content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+    <link rel="canonical" href="https://demo-basic.adminkit.io/" />
+    <title>Quản lý tài khoản</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="css/product.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav id="sidebar" class="sidebar js-sidebar">
+            <div class="sidebar-content js-simplebar">
+                <a class="sidebar-brand" href="index.html">
+                    <span class="align-middle">Admin</span>
+                </a>
+
+                <ul class="sidebar-nav">
+                    <li class="sidebar-header">
+                        Pages
+                    </li>
+                    <li class="sidebar-item ">
+                        <a class="sidebar-link" href="index.html">
+                            <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="category.html">
+                            <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Category</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item active">
+                        <a class="sidebar-link" href="product.html">
+                            <i class="align-middle" data-feather="square"></i> <span class="align-middle">Product</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="user.html">
+                            <i class="align-middle" data-feather="user"></i> <span class="align-middle">User</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+
+        <div class="main">
+            <nav class="navbar navbar-expand navbar-light navbar-bg">
+                <a class="sidebar-toggle js-sidebar-toggle mx-2">
+                    <i class="hamburger align-self-center"></i>
+                </a>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav navbar-align">
+                        <li class="nav-item dropdown">
+                            <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
+                                data-bs-toggle="dropdown">
+                                <i class="align-middle" data-feather="settings"></i>
+                            </a>
+
+                            <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
+                                data-bs-toggle="dropdown">
+                                <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"
+                                    alt="Charles Hall" />
+                                <span class="text-dark" id="inforLogin"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item" href="#" onclick="logout()">Log out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- Form Create New product (contentForm) -->
+            <main class="content" id="contentForm">
+                <div class="container-fluid p-0">
+                    <div class="card">
+                        <div class="container add-new-product">
+                            <h2 id="titleAction">Thêm mới sản phẩm</h2>
+                            <form name="form_product">
+                                <input type="hidden" class="form-control" id="productId">
+                                <div class="form-group row">
+                                    <label for="productname" class="col-md-3 col-form-label">Tên sản phẩm</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="productname"
+                                            placeholder="Input productname">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="category" class="col-md-3 col-form-label">Loại sản phẩm</label>
+                                    <div class="col-md-9">
+                                        <select class="form-select" id="category">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="active" class="col-md-3 col-form-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        <div class="catalog--type">
+                                            <input type="radio" name="radioStatus" id="active" value="Active" checked />
+                                            <label for="active">Active</label>
+                                            <input type="radio" name="radioStatus" id="inactive" value="Inactive" />
+                                            <label for="inactive">Inactive</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="description" class="col-md-3 col-form-label">Mô tả sản phẩm</label>
+                                    <div class="col-md-9">
+                                        <textarea class="form-control" id="description" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="price" class="col-md-3 col-form-label">Giá sản phẩm</label>
+                                    <div class="col-md-9">
+                                        <input type="number" class="form-control" id="price"
+                                               placeholder="Input price">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="offset-md-3 col-md-9">
+                                        <button type="submit" class="btn btn-primary" id="btnSubmit">Save</button>
+                                        <button type="submit" class="btn btn-default" id="btnCancel">Cancel</button>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+            <!-- Table chứa productInfor (contentTable) -->
+            <main class="content" id="contentTable">
+                <div class="container-fluid p-0">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Quản lý sản phẩm</h3>
+                            <nav class="navbar navbar-expand-lg bg-light">
+                                <div class="container-fluid">
+                                    <a class="navbar-brand" href="#">
+                                        <button type="button" class="btn btn-success" id="addNew">+ Thêm mới
+                                        </button>
+                                    </a>
+                                    <form class="d-flex" role="search">
+                                        <input class="form-control me-2 fst-italic" type="search" id="inputSearch"
+                                            placeholder="Nhập Tên or loại..." aria-label="Search">
+                                        <button class="btn btn-outline-success" type="submit"
+                                            id="btnSearch">Search</button>
+                                    </form>
+                                </div>
+                            </nav>
+                        </div>
+                        <!-- Table title -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Image</th>
+                                        <th>Category</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                        <th>Description</th>
+                                        <th>Created Date</th>
+                                        <th colspan="2">Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="tbody">
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <nav aria-label="Page navigation example " id="paging">
+
+                        </nav>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Chân trang  -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row text-muted">
+                        <div class="col-6 text-start">
+                            <p class="mb-0">
+                                <a class="text-muted" href="" target="_blank"><strong>AdminKit</strong></a>
+                                - <a class="text-muted" href="" target="_blank"><strong>Quản lý sản phẩm</strong></a>
+                                &copy;
+                            </p>
+                        </div>
+                        <div class="col-6 text-end">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <a class="text-muted" href="#" target="_blank">Support</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="text-muted" href="#" target="_blank">Help Center</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="text-muted" href="#" target="_blank">Privacy</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="text-muted" href="#" target="_blank">Terms</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/product.js"></script>
+
+</body>
+
+</html>
